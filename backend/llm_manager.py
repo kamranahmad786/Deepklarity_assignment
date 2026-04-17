@@ -42,8 +42,8 @@ def extract_recipe_details(scraped_data):
             
         return json.loads(cleaned_response)
     except Exception as e:
-        print(f"Error in LLM extraction: {e}")
-        return None
+        # Re-raise so main.py can capture the details
+        raise Exception(f"Gemini API Error: {str(e)}")
 
 def generate_combined_shopping_list(recipes):
     """Uses LLM to merge shopping lists from multiple recipes."""

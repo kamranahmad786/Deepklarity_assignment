@@ -69,9 +69,13 @@ async def extract_recipe(request: ExtractRequest, db: Session = Depends(get_db))
         raise HTTPException(status_code=400, detail="Either URL or Raw Text must be provided.")
 
     # LLM Extract
-    extracted_data = llm_manager.extract_recipe_details(scraped_data)
-    if not extracted_data:
-        raise HTTPException(status_code=500, detail="LLM failed to process the recipe.")
+    try:
+        extracted_data = llm_manager.extract_recipe_details(scraped_data)
+        if not extracted_data:
+            raise Exception("LLM failed to return structured data.")
+    except Exception as e:
+        print(f"Extraction Error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"LLM Extraction failed: {str(e)}")
     
     # Save to DB
     new_recipe = models.Recipe(

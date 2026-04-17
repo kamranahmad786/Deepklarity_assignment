@@ -50,7 +50,8 @@ function App() {
       setRecipe(res.data);
       fetchHistory();
     } catch (err) {
-      alert("Error extracting recipe. Please check the URL and try again.");
+      const errorMsg = err.response?.data?.detail || "Error extracting recipe. Please check the URL and try again.";
+      alert(errorMsg);
     } finally {
       setLoading(false);
     }

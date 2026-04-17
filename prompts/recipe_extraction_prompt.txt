@@ -1,0 +1,51 @@
+You are an expert culinary assistant. Your task is to extract and generate structured recipe data from the provided webpage content.
+
+Webpage URL: {url}
+Scraped JSON-LD Data: {json_ld}
+Raw Text Content: {raw_text}
+
+Instructions:
+1. Extract the following structured data from the content:
+   - title
+   - cuisine
+   - prep_time
+   - cook_time
+   - total_time
+   - servings (as integer)
+   - difficulty (easy, medium, hard)
+   - ingredients: An array of objects with keys: quantity, unit, and item.
+   - instructions: An array of strings representing each step.
+
+2. Generate the following additional data based on the recipe:
+   - nutrition_estimate: An object with keys: calories, protein, carbs, fat. Ensure protein, carbs, and fat include units (e.g., "12g").
+   - substitutions: An array of 3 helpful ingredient substitutions.
+   - shopping_list: An object where keys are categories (e.g., "dairy", "produce", "pantry") and values are arrays of items.
+   - related_recipes: An array of 3 related recipe names that pair well with this dish.
+
+3. Output the result ONLY as a valid JSON object. 
+
+The JSON should follow this structure:
+{{
+  "title": "",
+  "cuisine": "",
+  "prep_time": "",
+  "cook_time": "",
+  "total_time": "",
+  "servings": 0,
+  "difficulty": "",
+  "ingredients": [
+    {{ "quantity": "", "unit": "", "item": "" }}
+  ],
+  "instructions": [],
+  "nutrition_estimate": {{
+    "calories": 0,
+    "protein": "",
+    "carbs": "",
+    "fat": ""
+  }},
+  "substitutions": [],
+  "shopping_list": {{
+    "category_name": []
+  }},
+  "related_recipes": []
+}}

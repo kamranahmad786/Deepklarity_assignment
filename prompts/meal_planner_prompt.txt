@@ -1,0 +1,15 @@
+You are an expert meal planner. Given the following recipes, generate a combined shopping list.
+
+Recipes:
+{recipes_json}
+
+Instructions:
+1. Merge identical items and combine their quantities where possible.
+2. Group the final shopping list by categories (e.g., "produce", "meat", "pantry").
+3. Output the result ONLY as a JSON object with category names as keys and arrays of merged items as values.
+
+Format:
+{{
+  "produce": ["3 onions", "2 carrots"],
+  "pantry": ["500g rice"]
+}}
